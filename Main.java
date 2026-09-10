@@ -16,6 +16,7 @@ public class Main {
     //This is the main way we are "testing" the program by making a bunch of semi-random songs, audiobooks, and podcasts
     //If you want to add in your own sounds, you can make a private static Song with proper information
     private static List<RawMediaRecord> sampleData = null;
+    private static MediaLibrary library = new MediaLibrary();
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -31,10 +32,21 @@ public class Main {
             switch (choice) {
                 case "1":
                     loadSampleData(input);
+                    //add them to library
                     break;
                 case "2":
                     // TODO (Project 1): print every item in your MediaLibrary
-                    comingSoon("Project 1", "build your MediaLibrary class, then list its contents here.");
+                    List<Playable> tempList = library.getAll();
+                    if(tempList.isEmpty()){
+                        System.out.println("Sorry no things! Please add things!");
+                    } else {
+                        System.out.println("Item Number: "+tempList.size());
+                        for(Playable audio : tempList){
+                            System.out.println("Title: "+audio.getTitle());
+                            System.out.println("Creator: "+audio.getCreator());
+                            System.out.println("------------------------------------");
+                        }
+                    }
                     break;
                 case "3":
                     // TODO (Project 1): call your MediaLibrary's linearSearch(String title)
@@ -115,8 +127,16 @@ public class Main {
         sampleData = SampleDataGenerator.generate(count);
         System.out.println("Generated " + sampleData.size() + " sample records.");
         System.out.println("Example: " + sampleData.get(0));
-        System.out.println("Once your MediaItem subclasses exist, loop over this data");
-        System.out.println("to build real Song/Podcast/Audiobook objects for your library.");
+        for(RawMediaRecord r : sampleData){
+            if(r.type.equals("SONG")){
+                Artist artist = new Artist(r.creator, "This artist plays "+r.genre+" and has at least one song in the year "+r.releaseYear+".");
+                String album = "Sgt. Pepper's Lonely Hearts Club Band";
+                Song song = new Song(r.id, r.title, r.durationSeconds, r.genre, r.dateAdded, r.releaseYear, artist, album);
+                library.add(song);
+            } 
+            //add podcasts
+            //add audiobook
+        }
     }
     private static void loadRealSongs(Scanner input){
         sampleData = SampleDataGenerator.generate(1);
