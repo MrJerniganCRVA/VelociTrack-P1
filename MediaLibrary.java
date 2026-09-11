@@ -25,11 +25,11 @@ public class MediaLibrary {
         return new ArrayList<>(items);
     }
     public void linearSearch(String searchTitle){
-        if(this.getAll().isEmpty()){
+        if(items.isEmpty()){
             System.out.println("Library empty. Please add sick beats!");
             return;
         }
-        for(Playable p : this.getAll()){
+        for(Playable p : items){
             if(p.getTitle().equalsIgnoreCase(searchTitle)){
                 System.out.println("Found Title!");
                 System.out.println("More info about your song");
