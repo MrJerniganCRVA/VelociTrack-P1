@@ -34,7 +34,7 @@ public class MediaLibrary {
                 System.out.println("Found Title!");
                 System.out.println("More info about your song");
                 System.out.println("Title: "+p.getTitle());
-                System.out.println("Artist: "+p.getCreator().getName());
+                System.out.println("Artist: "+p.getCreator());
                 System.out.println("Year Released: "+p.getReleaseYear());
                 //p.play();
                 return;
