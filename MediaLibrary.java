@@ -24,4 +24,22 @@ public class MediaLibrary {
     public List<Playable> getAll(){
         return new ArrayList<>(items);
     }
+    public void linearSearch(String searchTitle){
+        if(this.getAll().isEmpty()){
+            System.out.println("Library empty. Please add sick beats!");
+            return;
+        }
+        for(Playable p : this.getAll()){
+            if(p.getTitle().equalsIgnoreCase(searchTitle)){
+                System.out.println("Found Title!");
+                System.out.println("More info about your song");
+                System.out.println("Title: "+p.getTitle());
+                System.out.println("Artist: "+p.getCreator().getName());
+                System.out.println("Year Released: "+p.getReleaseYear());
+                //p.play();
+                return;
+            }
+        }
+        System.out.println("Song never found. :( ");
+    }
 }

@@ -50,7 +50,9 @@ public class Main {
                     break;
                 case "3":
                     // TODO (Project 1): call your MediaLibrary's linearSearch(String title)
-                    comingSoon("Project 1", "call your linearSearch(String title) method here.");
+                    System.out.print("Enter title to find: ");
+                    String searchTitle = input.nextLine().trim();
+                    library.linearSearch(searchTitle);
                     break;
                 case "4":
                     // TODO (Project 2): print the contents of a Playlist
@@ -97,7 +99,7 @@ public class Main {
         }
         input.close();
     }
-
+    
     private static void printMenu() {
         System.out.println("\n===== VelociTrack =====");
         System.out.println(" 1. Load Sample Data");
